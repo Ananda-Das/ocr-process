@@ -9,16 +9,23 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import Upload from './pages/upload';
+import Layouts from './components/Layouts/Layouts';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: <Layouts></Layouts>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+      },
+      {
+        path: '/upload',
+        element: <Upload></Upload>,
+      }
+    ]
   },
-  {
-    path: '/upload',
-    element: <Upload></Upload>
-  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
