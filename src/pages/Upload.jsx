@@ -49,13 +49,38 @@ const Upload = () => {
       setIsProcessing(true);
       Tesseract.recognize(selectedImage, "eng", { logger: (m) => console.log(m) }).then(({ data: { text } }) => {
         setOcrText(text);
+        console.log(ocrText);
         setIsProcessing(false);
       });
     }
   };
 
+  const processText = [ocrText];
+  console.log(processText);
+
+
+
+  // const dataObjects = ocrText.split('\n').map((line) => {
+  //   const [id, namePart, dob, phone, ...rest] = line.split(' ');
+  //   const lastName = namePart.split(',')[0];
+  //   const firstName = namePart.split(',')[1];
+  //   const measure = rest.join(' ').trim();
+  
+  //   return {
+  //     id: parseInt(id, 10),
+  //     name: `${firstName} ${lastName}`,
+  //     dob,
+  //     phone,
+  //     measure,
+  //   };
+  // });
+
+  // const jsonData = JSON.stringify(dataObjects, null, 2);
+
+  // console.log(jsonData);
+
   return (
-    <div>
+    <div className="max-w-[1280px] mx-auto">
       {/* <input type="file" onChange={handleFileChange} />
       {preview && (
         <div>
@@ -76,7 +101,7 @@ const Upload = () => {
         </div>
       )}
 
-      <button onClick={handleOCR} disabled={!selectedImage}>
+      <button className="btn btn-primary" onClick={handleOCR} disabled={!selectedImage}>
         Process OCR
       </button>
       {isProcessing && <p>Processing...</p>}
